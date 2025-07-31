@@ -9,4 +9,3 @@ Feature:  webdriveruniversity contact us page
         And I click on the submit button
         Then I should be presented width a successfull contact us  submission message
 
-
