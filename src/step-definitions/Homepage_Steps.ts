@@ -26,3 +26,12 @@ When("I click on the contact us button", async () => {
   });
   await contactUs_Button.click();
 });
+
+When("I switch to the new browser tab", async () => {
+  page = await context.waitForEvent("page");
+  await page.bringToFront();
+});
+
+When("I type a last name", async () => {
+  await page.getByPlaceholder("Last Name").fill("Duurdinges");
+});
