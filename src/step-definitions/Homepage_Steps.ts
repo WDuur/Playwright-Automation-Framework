@@ -1,37 +1,24 @@
 import { Given, When } from "@cucumber/cucumber";
-import { Browser, chromium, Page } from "playwright";
-
-let browser: Browser;
-let context: any;
-let page: Page;
+import { pageFixture } from "../step-definitions/hooks/browserContextFixture";
 
 const baseUrl = "https://webdriveruniversity.com/";
 
 Given("I navigate to webdriveruniversity homepage", async () => {
-  console.log("Step 1, navigate to webdriveruniversity homepage");
-  browser = await chromium.launch({ headless: false });
-  context = await browser.newContext({
-    viewport: { width: 1920, height: 1080 },
-  });
-  page = await context.newPage();
-  await page.goto(baseUrl);
+  await pageFixture.page.goto(baseUrl);
 });
 
 When("I click on the contact us button", async () => {
   console.log("Step 2, click on the contact us button");
-  // await page.pause();
-  // getByRole('link', { name: 'CONTACT US Contact Us Form' })
-  const contactUs_Button = await page.getByRole("link", {
+
+  const contactUs_Button = await pageFixture.page.getByRole("link", {
     name: "CONTACT US Contact Us Form",
   });
   await contactUs_Button.click();
 });
 
-When("I switch to the new browser tab", async () => {
-  page = await context.waitForEvent("page");
-  await page.bringToFront();
-});
-
-When("I type a last name", async () => {
-  await page.getByPlaceholder("Last Name").fill("Duurdinges");
+When("I click on the login portal button", async () => {
+  const login_Button = await pageFixture.page.getByRole("link", {
+    name: "LOGIN PORTAL Login Portal Are",
+  });
+  await login_Button.click();
 });
