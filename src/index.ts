@@ -19,7 +19,7 @@ const profiles: ProfileCommands = {
   smoke: `${common} --tags @smoke`,
   regression: `${common} --tags @regression`,
   login: `${common} --tags @login`,
-  contacts: `${common} --tags @contactus`,
+  contactus: `${common} --tags @contactus`,
 };
 
 // Get the thirth argument and assign it to the profile

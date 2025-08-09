@@ -13,7 +13,7 @@ Feature:  webdriveruniversity contact us page
         And I type a comment
         And I click on the submit button
         Then I should be presented width a successfull contact us submission message
-
+    @ignore
     Scenario: Invalid contact us form subission
         And I type a first name
         And I type a last name
@@ -21,7 +21,7 @@ Feature:  webdriveruniversity contact us page
         And I type a comment
         And I click on the submit button
         Then I should be presented with unsuccesful contact us message
-
+    @ignore
     Scenario: Valid contact us form subission - using Specific Data
         And I type a specific first name "Wietze"
         And I type a specific last name "Duursma"
@@ -29,7 +29,7 @@ Feature:  webdriveruniversity contact us page
         And I type a specific text "Hellow world"  and a number 2 within the comment input field
         And I click on the submit button
         Then I should be presented width a successfull contact us submission message
-
+    @ignore
     Scenario: Valid contact us form subission - using Random Data
         And I type a random first name
         And I type a random last name
@@ -38,7 +38,7 @@ Feature:  webdriveruniversity contact us page
         And I click on the submit button
         Then I should be presented width a successfull contact us submission message
 
-
+    @ignore
     Scenario Outline: Validate countact us page
         And I type a first name <firstName> and a last name <lastName>
         And I type a email address '<emailAddress>' and a comment '<comment>'

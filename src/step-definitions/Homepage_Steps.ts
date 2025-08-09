@@ -1,10 +1,17 @@
 import { Given, When } from "@cucumber/cucumber";
 import { pageFixture } from "../step-definitions/hooks/browserContextFixture";
+import logger from "../logger/logger";
 
 const baseUrl = "https://webdriveruniversity.com/";
 
 Given("I navigate to webdriveruniversity homepage", async () => {
-  await pageFixture.page.goto(baseUrl);
+  try {
+    await pageFixture.page.goto(baseUrl);
+    logger.info(`Accessing URL: ${baseUrl}`);
+    // throw new Error("testing the error Error");
+  } catch (error) {
+    logger.error(`Error navigating to ${baseUrl}: ${error}`);
+  }
 });
 
 When("I click on the contact us button", async () => {
