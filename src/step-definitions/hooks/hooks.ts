@@ -8,6 +8,7 @@ import {
 } from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalSettings } from "../../utils/playwright-timeouts";
+import { PageManager } from "../../page-objects/base/BaseManager";
 
 //Load env variables from .env file
 import { config as loadEnv } from "dotenv";
@@ -72,6 +73,9 @@ Before(async function () {
     browserInstance = await initializeBrowserContext(config.browser);
     console.log(`Browser context initialized for: ${config.browser}`);
     await initializePage();
+
+    this.pageManager = new PageManager();
+    this.basePage = this.pageManager.createBasePage();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }
