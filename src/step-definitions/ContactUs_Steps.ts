@@ -2,12 +2,15 @@ import { Given, Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
 import { pageFixture } from "../step-definitions/hooks/browserContextFixture";
+import { CucumberWorld } from "./world/cucumberWorld";
+import logger from "../logger/logger";
 
-When("I type a first name", async () => {
+When("I type a first name", async function (this: CucumberWorld) {
+  logger.info(`base url stored in world: ${this.getUrl()}`);
   await pageFixture.page.getByPlaceholder("First Name").fill("Wietze");
 });
 
-When("I type a last name", async () => {
+When("I type a last name", async function (this: CucumberWorld) {
   await pageFixture.page.getByPlaceholder("Last Name").fill("Duurdinges");
 });
 
@@ -17,12 +20,18 @@ When("I type an email adress", async () => {
     .fill("wietze.duurdinges@st.hanze.nl");
 });
 
+When("I type a random comment", async function (this: CucumberWorld) {
+  await pageFixture.page
+    .getByPlaceholder("Comments")
+    .fill(
+      `please can you contact me? \nThanks, ${this.getFirstName()} ${this.getLastName()} \n\n email: ${this.getEmailAddress()}`
+    );
+});
 When("I type a comment", async () => {
   await pageFixture.page
     .getByPlaceholder("Comments")
-    .fill("This is a test commentvan wietze");
+    .fill("This is a test comment van wietze");
 });
-
 When("I click on the submit button", async () => {
   await pageFixture.page.waitForSelector('input[type="SUBMIT"]');
   await pageFixture.page.click('input[type="SUBMIT"]');
@@ -71,18 +80,21 @@ When(
 );
 
 //Random data
-When("I type a random first name", async () => {
+When("I type a random first name", async function (this: CucumberWorld) {
   const ramdomFirstName = faker.person.firstName();
+  this.setFirstName(ramdomFirstName);
   await pageFixture.page.getByPlaceholder("First Name").fill(ramdomFirstName);
 });
 
-When("I type a random last name", async () => {
+When("I type a random last name", async function (this: CucumberWorld) {
   const ramdomLastName = faker.person.lastName();
+  this.setLastName(ramdomLastName);
   await pageFixture.page.getByPlaceholder("Last Name").fill(ramdomLastName);
 });
 
-When("I type an random email adress", async () => {
+When("I type an random email adress", async function (this: CucumberWorld) {
   const ramdomEmail = faker.internet.email();
+  this.setEmailAddress(ramdomEmail);
   await pageFixture.page.getByPlaceholder("Email Address").fill(ramdomEmail);
 });
 
