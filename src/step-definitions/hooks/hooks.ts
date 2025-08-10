@@ -8,7 +8,7 @@ import {
 } from "@playwright/test";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalSettings } from "../../utils/playwright-timeouts";
-import { PageManager } from "../../page-objects/base/BaseManager";
+import { PageManager } from "../../page-objects/base/PageManager";
 
 //Load env variables from .env file
 import { config as loadEnv } from "dotenv";
@@ -76,6 +76,8 @@ Before(async function () {
 
     this.pageManager = new PageManager();
     this.basePage = this.pageManager.createBasePage();
+    this.homePage = this.pageManager.createHomePage();
+    this.cuntactUsPage = this.pageManager.createContactUsPage();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }

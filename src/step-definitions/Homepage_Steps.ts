@@ -9,7 +9,7 @@ Given(
   "I navigate to webdriveruniversity homepage",
   async function (this: CucumberWorld) {
     try {
-      await this.basePage.navigate(baseUrl);
+      await this.homePage.navigate(baseUrl);
       logger.info(`Accessing URL: ${baseUrl}`);
       this.setUrl(baseUrl);
     } catch (error) {
@@ -19,12 +19,12 @@ Given(
 );
 
 When("I click on the contact us button", async function (this: CucumberWorld) {
-  this.basePage.waitAndClickByRole("link", "CONTACT US Contact Us Form");
+  this.homePage.clickOnContactUsButton();
 });
 
 When(
   "I click on the login portal button",
   async function (this: CucumberWorld) {
-    this.basePage.waitAndClickByRole("link", "LOGIN PORTAL Login Portal Are");
+    this.homePage.clickOnLoginPortalButton();
   }
 );
