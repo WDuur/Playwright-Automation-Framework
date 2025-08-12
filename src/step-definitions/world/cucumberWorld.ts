@@ -3,12 +3,14 @@ import { World, setWorldConstructor, IWorldOptions } from "@cucumber/cucumber";
 import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
+import { LoginPage } from "./../../page-objects/LoginPage";
 
 export class CucumberWorld extends World {
   public pageManager: PageManager;
   public basePage: BasePage;
   public homePage: HomePage;
   public contactUsPage: ContactUsPage;
+  public loginPage: LoginPage;
 
   // base URL
   private url?: string;
@@ -26,6 +28,7 @@ export class CucumberWorld extends World {
     this.basePage = this.pageManager.createBasePage();
     this.homePage = this.pageManager.createHomePage();
     this.contactUsPage = this.pageManager.createContactUsPage();
+    this.loginPage = this.pageManager.createLoginPage();
   }
   //setters for url, first name and last name
   setUrl(url: string) {

@@ -2,9 +2,7 @@
 Feature: webdriveruniversity login page
 
     Scenario Outline: login form submission
-        Given I navigate to webdriveruniversity homepage
-        When I click on the login portal button
-        And I switch to the new browser tab
+        Given I navigate to the login page
         And I type a Username <userName>
         And I type a Password <password>
         # And I wait for 1 seconds
@@ -16,7 +14,7 @@ Feature: webdriveruniversity login page
             | webdriver | webdriver123 | validation succeeded |
             | webdriver | webdriver999 | validation failed    |
 
-        @smoke @ignore
+        @smoke
         Examples:
             | userName  | password     | alertMessage         |
             | webdriver | webdriver123 | validation succeeded |

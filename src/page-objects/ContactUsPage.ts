@@ -24,7 +24,7 @@ export class ContactUsPage extends BasePage {
 
   //get successfull
   public async getSuccessfulMessage(): Promise<string> {
-    await this.page.waitForSelector("#contact_reply h1", { timeout: 60000 });
+    await this.page.waitForSelector("#contact_reply h1");
     return await this.page.innerText("#contact_reply h1");
   }
   //get unsuccesfull

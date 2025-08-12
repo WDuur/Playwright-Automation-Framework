@@ -34,7 +34,7 @@ When("I click on the submit button", async function (this: CucumberWorld) {
 Then(
   "I should be presented width a successfull contact us submission message",
   async function () {
-    const successMessage = await this.ContactUsPage.getSuccessfulMessage();
+    const successMessage = await this.contactUsPage.getSuccessfulMessage();
     expect(successMessage).toBe("Thank You for your Message!");
   }
 );
